@@ -1,0 +1,88 @@
+//DECLARACION VARIABLES
+
+var myObj =
+{
+"ACCOUNT": {
+      // these labels are status messages that can be found in the compapny account details page
+    "DETAILS": {
+      "BACK": "Back",
+      "IBAN_REQUEST": "IBAN request",
+      "IBAN_REQUEST_SUBTITLE": "is waiting for IBAN approval",
+      "IBAN_FIELD": "IBAN",
+      "BIC_FIELD": "BIC",
+      "CURRENCY_FIELD": "Currency",
+      "ADDITIONAL_ACCOUNT_NUMBER_FIELD": "Additional account number",
+      "APPROVE_DECLINE_IBAN_REQUEST": "Approve or decline IBAN request",
+      "SUMMARY": {
+        "REQUESTER": "Applicant",
+        "REGISTRATION_NUMBER": "Company registration number",
+        "DATE": "Date"
+      }
+    }
+  }
+};
+
+var myTrans =
+{
+"USERNAME":"Nombre de usuario","CURRENCY_FIELD":"Divisa", "REQUESTER":"Solicitante", "Date":"Fecha"
+}
+
+//FIN DECLARACION VARIABLES
+
+var valor;
+for (x in myObj) { //bucle para recorrer el objeto original 1er nivel
+        //alert(x); // alertas para ir viendo el correco funcionamiento
+        //alert(typeof myObj[x]);
+    if (typeof myObj[x] === 'object'){ //en caso de encontrar un objeto como hijo 2o nivel, lo recorremos.
+       for (z in myObj[x]){
+           //alert(z);
+           //alert(typeof myObj[x][z]);
+           if (typeof myObj[x][z] === 'object'){ //en caso de encontrar un objeto como hijo 3 nivel, lo recorremos.
+               for (w in myObj[x][z]){
+                   //alert(w);
+                   //alert(typeof myObj[x][z][w]);
+                   if (typeof myObj[x][z][w] === 'object'){ //en caso de encontrar un objeto como hijo 4 nivel, lo recorremos.
+                        for (v in myObj[x][z][w]){
+                            //alert(v);
+                            //alert(typeof myObj[x][z][w][v]);
+                            for (y in myTrans){
+                                if (v === y){ //compruebo si los nombre de las propiedades coinciden
+                                    valor=myTrans[y]; 
+                                    //alert(valor);
+                                    myObj[x][z][w][v]=valor; //En caso de que coincidan, asigno el valor traducido al objeto original
+                                    //alert(myObj[x][z][w][v]);
+                                
+                                }
+                            }
+                        }
+                   }else{
+                        for (y in myTrans){ //si el hijo no es un objeto sigo comprobando propiedades
+                            if (w === y){ //compruebo si propiedades coinciden
+                                valor=myTrans[y];
+                                myObj[x][z][w]=valor; //asigno el valor traducido al objeto original
+                            }
+                        }
+                    }
+               }
+            }else{
+                for (y in myTrans){ //si el hijo no es un objeto sigo comprobando propiedades
+                    if (z === y){ //compruebo si propiedades coinciden
+                    valor=myTrans[y];
+                    //alert(z);
+                    //alert(myObj[x][z]);
+                    myObj[x][z]=valor; //asigno el valor traducido al objeto original
+                }
+            }
+       }
+    }}else{
+    for (y in myTrans){ //bucle para recorrer el objeto con las traducciones
+    if (x === y){ //compruebo si propiedades coinciden
+        //alert (x);
+        valor=myTrans[y];
+        myObj[x]=valor; //asigno el valor traducido al objeto original
+    }
+    }
+    }
+}
+
+console.log(myObj);
