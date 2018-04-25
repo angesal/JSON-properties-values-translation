@@ -85,4 +85,15 @@ for (x in myObj) { //bucle para recorrer el objeto original 1er nivel
     }
 }
 
-console.log(myObj);
+console.log(myObj); //if you want the result vía console
+
+//if you want to download the resulting JSON 
+var obj = myObj;
+var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
+
+$('<a href="data:' + data + '" download="data.json">download JSON</a>').appendTo('#container');
+
+//NOTE1: Remember to add the jQuery extension
+//NOTE2: In the HTML must add the following div 
+// <div id="container"></div>
+
