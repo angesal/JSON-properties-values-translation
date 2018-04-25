@@ -43,3 +43,7 @@ var myTrans =
 The resulting object will change these property values in the original object.
 
 In the future this should be encapsulated in a function, but for the moment you can just copy and paste the code in https://jsfiddle.net or in your javascript console and run it.
+
+We've added the code to download the resulting JSON (see https://jsfiddle.net/cowboy/hHZa9/)
+You'll need to add jQuery extension in order to run it.
+
